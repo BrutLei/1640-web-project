@@ -1,5 +1,5 @@
 import './App.css';
-import PageLogin from '~/Login/LoginPage';
+import PageLogin from '~/Login/PageLogin';
 
 function App() {
   return <PageLogin />;

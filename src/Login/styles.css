@@ -1,0 +1,15 @@
+.container {
+  display: flex;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(107deg, rgba(0, 255, 255, 0.93) 0%, #999 131.21%);
+}
+
+.login-layout {
+  background: rgba(255, 255, 255, 0.83);
+  width: 700px;
+  height: 450px;
+  border-radius: 30px;
+  border: 1.5px solid #000;
+}
