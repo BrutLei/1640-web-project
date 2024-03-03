@@ -1,7 +1,11 @@
-import axios from 'axios';
+import axios from './CustomAxios';
 
 const fetchAllUser = () => {
-  return axios.get('https://jsonplaceholder.typicode.com/posts');
+  return axios.get('api/users?page=2');
 };
 
-export { fetchAllUser };
+const postCreateUser = (name, job) => {
+  return axios.post('api/users', { name: name, job: job });
+};
+
+export { fetchAllUser, postCreateUser };
