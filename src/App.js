@@ -6,12 +6,14 @@ import './App.css';
 import 'react-toastify/dist/ReactToastify.css';
 
 import Example from './CallApi';
+
 import PageLogin from '~/Components/LoginPage/PageLogin';
 import Header from './Components/Header/Header';
 import Table from './Components/DocTable/Table';
 import MoodleAdd from './Components/ModalAddDoc/ModalAdd';
 import Register from './Components/Register/Register';
 import StudentPage from './Components/StudentPage/StudentPage';
+import AddUserPage from './Components/AddUser';
 
 function App() {
   const [showToggle, setShowToggle] = useState(false);
@@ -22,9 +24,10 @@ function App() {
   return (
     <>
       <Header />
-      <Routes>
+      <Routes path="/">
         <Route path="/login" element={<PageLogin />}></Route>
         <Route path="/" element={<StudentPage handleToggle={handleToggle} />}></Route>
+        <Route path="/addUser" element={<AddUserPage />}></Route>
       </Routes>
       <MoodleAdd show={showToggle} handleToggle={handleToggle} />
       <ToastContainer
