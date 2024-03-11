@@ -12,7 +12,7 @@ const Table = () => {
     let res = await fetchAllUser();
     if (res) {
       setList(res);
-      console.log(res);
+      // console.log(res);
     }
     return;
   };
@@ -43,7 +43,7 @@ const Table = () => {
           </tr>
         </thead>
         <tbody>
-          {/* {list.map((item, index) => {
+          {list.map((item, index) => {
             return (
               <tr
                 key={`article-${index}`}
@@ -67,8 +67,8 @@ const Table = () => {
                 </td>
               </tr>
             );
-          })} */}
-          {console.log(list)}
+          })}
+          {/* {console.log(list)} */}
         </tbody>
       </table>
     </div>
