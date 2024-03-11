@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { postCreateUser } from '~/service/UserService';
+// import { postCreateUser } from '~/service/UserService';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -10,18 +10,18 @@ const MoodleAdd = ({ show, handleToggle }) => {
   const [job, setJob] = useState('');
 
   const handleSave = async () => {
-    let res = await postCreateUser(name, job);
-    if (res && res.id) {
-      handleToggle();
-      setJob('');
-      setName('');
-      toast.success('Create New User successfull!!!');
-    } else {
-      handleToggle();
-      setJob('');
-      setName('');
-      toast.error('Failed when create a new user!!!');
-    }
+    // let res = await postCreateUser(name, job);
+    // if (res && res.id) {
+    //   handleToggle();
+    //   setJob('');
+    //   setName('');
+    //   toast.success('Create New User successfull!!!');
+    // } else {
+    //   handleToggle();
+    //   setJob('');
+    //   setName('');
+    //   toast.error('Failed when create a new user!!!');
+    // }
   };
 
   return (

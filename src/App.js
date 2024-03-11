@@ -5,13 +5,9 @@ import { useState } from 'react';
 import './App.css';
 import 'react-toastify/dist/ReactToastify.css';
 
-import Example from './CallApi';
-
 import PageLogin from '~/Components/LoginPage/PageLogin';
 import Header from './Components/Header/Header';
-import Table from './Components/DocTable/Table';
 import MoodleAdd from './Components/ModalAddDoc/ModalAdd';
-import Register from './Components/Register/Register';
 import StudentPage from './Components/StudentPage/StudentPage';
 import AddUserPage from './Components/AddUser';
 

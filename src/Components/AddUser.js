@@ -1,18 +1,21 @@
 import { useState } from 'react';
 import { toast } from 'react-toastify';
+import { createUser } from '~/service/UserService';
 
 const AddUserPage = () => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [city, setCity] = useState('');
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
+    e.preventDefault();
     if (name && email && city) {
-      e.preventDefault();
-      toast.info(`Name: ${name}, email: ${email}, city: ${city}`);
-    } else {
-      e.preventDefault();
-      toast.error('missing required information');
+      let res = await createUser(name, email, city);
+      if (res) {
+        console.log(res);
+      } else {
+        toast.error('Create new user failed');
+      }
     }
   };
   return (
