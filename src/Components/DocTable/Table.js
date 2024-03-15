@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { fetchAllUser } from '~/service/UserService';
+import { fetchAllFaculties } from '~/service/FacultyService';
 
 const Table = () => {
   const [list, setList] = useState([]);
@@ -9,11 +9,9 @@ const Table = () => {
   }, []);
 
   const getDatas = async () => {
-    let res = await fetchAllUser();
-    if (res) {
-      setList(res);
-      // console.log(res);
-    }
+    let res = await fetchAllFaculties();
+    console.log(res);
+    setList(res);
     return;
   };
 
@@ -29,10 +27,10 @@ const Table = () => {
               Name
             </th>
             <th scope="col" className="px-6 py-3">
-              Email
+              Created at
             </th>
             <th scope="col" className="px-6 py-3">
-              City
+              Updated at
             </th>
             <th scope="col" className="px-6 py-3">
               <span className="sr-only">Edit</span>
@@ -53,8 +51,8 @@ const Table = () => {
                   {item.id}
                 </th>
                 <td className="px-6 py-4">{item.name}</td>
-                <td className="px-6 py-4">{item.email}</td>
-                <td className="px-6 py-4">{item.city}</td>
+                <td className="px-6 py-4">{Date(item.createdAt)}</td>
+                <td className="px-6 py-4">{Date(item.updatedAt)}</td>
                 <td className="px-6 py-4 text-right">
                   <a href="#" className="font-medium text-blue-600 dark:text-blue-500 hover:underline">
                     Edit

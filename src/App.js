@@ -9,7 +9,6 @@ import PageLogin from '~/Components/LoginPage/PageLogin';
 import Header from './Components/Header/Header';
 import MoodleAdd from './Components/ModalAddDoc/ModalAdd';
 import StudentPage from './Components/StudentPage/StudentPage';
-import AddUserPage from './Components/AddUser';
 
 function App() {
   const [showToggle, setShowToggle] = useState(false);
@@ -21,9 +20,8 @@ function App() {
     <>
       <Header />
       <Routes path="/">
-        <Route path="/login" element={<PageLogin />}></Route>
+        {/* <Route path="/login" element={<PageLogin />}></Route> */}
         <Route path="/" element={<StudentPage handleToggle={handleToggle} />}></Route>
-        <Route path="/addUser" element={<AddUserPage />}></Route>
       </Routes>
       <MoodleAdd show={showToggle} handleToggle={handleToggle} />
       <ToastContainer

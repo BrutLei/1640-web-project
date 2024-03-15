@@ -1,8 +1,6 @@
 import { useState } from 'react';
 import './styles.css';
-import images from '~/assets/images';
 import { toast } from 'react-toastify';
-import { handleLogin } from '~/service/UserService';
 export default function PageLogin() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -13,23 +11,21 @@ export default function PageLogin() {
       toast.warn('Email/password is requires!!!');
       return;
     }
-    let res = await handleLogin(email, password);
-    console.log('>>> Check Response: ', res);
-    if (res && res.token) {
-      localStorage.setItem('token', res.token);
-    } else {
-      if (res && res.status !== 200) {
-        const Msg = () => {
-          return (
-            <div>
-              <p>Status code: {res.status}</p>
-              <p>{res.data.error}</p>
-            </div>
-          );
-        };
-        toast.error(<Msg />);
-      }
-    }
+    // if (true) {
+    //   localStorage.setItem('token', res.token);
+    // } else {
+    //   if (res && res.status !== 200) {
+    //     const Msg = () => {
+    //       return (
+    //         <div>
+    //           <p>Status code: {res.status}</p>
+    //           <p>{res.data.error}</p>
+    //         </div>
+    //       );
+    //     };
+    //     toast.error(<Msg />);
+    //   }
+    // }
   };
 
   return (

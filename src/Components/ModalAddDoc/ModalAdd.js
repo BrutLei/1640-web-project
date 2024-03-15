@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import { postCreateUser } from '~/service/UserService';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -9,21 +8,21 @@ const MoodleAdd = ({ show, handleToggle }) => {
   const [name, setName] = useState('');
   const [job, setJob] = useState('');
 
-  const handleSave = async () => {
-    let res = await postCreateUser(name, job);
-    console.log(res);
-    if (res.data && res.data.id) {
-      handleToggle();
-      setJob('');
-      setName('');
-      toast.success('Create New User successfull!!!');
-    } else {
-      handleToggle();
-      setJob('');
-      setName('');
-      toast.error('Failed when create a new user!!!');
-    }
-  };
+  // const handleSave = async () => {
+  //   let res = await postCreateUser(name, job);
+  //   console.log(res);
+  //   if (res.data && res.data.id) {
+  //     handleToggle();
+  //     setJob('');
+  //     setName('');
+  //     toast.success('Create New User successfull!!!');
+  //   } else {
+  //     handleToggle();
+  //     setJob('');
+  //     setName('');
+  //     toast.error('Failed when create a new user!!!');
+  //   }
+  // };
 
   return (
     <div
@@ -76,7 +75,7 @@ const MoodleAdd = ({ show, handleToggle }) => {
           </div>
           <div className="flex justify-center items-center p-4 md:p-5 border-t border-gray-200 rounded-b dark:border-gray-600">
             <button
-              onClick={() => handleSave()}
+              // onClick={() => handleSave()}
               data-modal-hide="default-modal"
               type="button"
               className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
