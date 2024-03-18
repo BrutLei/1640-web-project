@@ -1,43 +1,34 @@
-import { Bounce, ToastContainer } from 'react-toastify';
-import { Routes, Route, Link } from 'react-router-dom';
-import { useState } from 'react';
-
-import './App.css';
-import 'react-toastify/dist/ReactToastify.css';
-
-import PageLogin from '~/Components/LoginPage/PageLogin';
-import Header from './Components/Header/Header';
-import MoodleAdd from './Components/ModalAddDoc/ModalAdd';
-import StudentPage from './Components/StudentPage/StudentPage';
+import { Route, Routes } from 'react-router-dom';
+import { Fragment } from 'react';
+// Import route
+import { publicRoutes, privateroutes } from './routes';
 
 function App() {
-  const [showToggle, setShowToggle] = useState(false);
-  function handleToggle() {
-    setShowToggle(!showToggle);
-  }
-
   return (
-    <>
-      <Header />
-      <Routes path="/">
-        {/* <Route path="/login" element={<PageLogin />}></Route> */}
-        <Route path="/" element={<StudentPage handleToggle={handleToggle} />}></Route>
-      </Routes>
-      <MoodleAdd show={showToggle} handleToggle={handleToggle} />
-      <ToastContainer
-        position="top-right"
-        autoClose={3000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-        theme="colored"
-        transition={Bounce}
-      />
-    </>
+    <Routes>
+      {publicRoutes.map((route, index) => {
+        const Page = route.component;
+        let Layout = null;
+
+        if (route.layout) {
+          Layout = route.layout;
+        } else {
+          Layout = Fragment;
+        }
+
+        return (
+          <Route
+            key={index}
+            path={route.path}
+            element={
+              <Layout>
+                <Page />
+              </Layout>
+            }
+          />
+        );
+      })}
+    </Routes>
   );
 }
 
