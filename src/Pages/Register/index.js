@@ -1,4 +1,12 @@
 import { useState } from 'react';
+import Select from 'react-tailwindcss-select';
+
+const options = [
+  { value: 'fox', label: '🦊 Fox' },
+  { value: 'Butterfly', label: '🦋 Butterfly' },
+  { value: 'Honeybee', label: '🐝 Honeybee' },
+];
+
 export default function Register() {
   const [formData, setFormData] = useState({
     firstName: '',
@@ -18,6 +26,13 @@ export default function Register() {
     // Implement form submission logic and user registration here
     console.log('Form submitted:', formData); // Example logging
   };
+
+  const [animal, setAnimal] = useState(null);
+
+  const handleChangeValue = (value) => {
+    console.log('value:', value);
+    setAnimal(value);
+  };
   return (
     <div className="flex items-center justify-center min-h-screen bg-gray-100">
       <div className="w-full max-w-md px-8 py-4 bg-white rounded-lg shadow-md">
@@ -25,9 +40,7 @@ export default function Register() {
         <form className="space-y-4" onSubmit={handleSubmit}>
           <div className="grid grid-cols-1 gap-4">
             <div className="flex flex-col">
-              <label htmlFor="firstName" className="text-sm font-medium text-gray-700">
-                First Name
-              </label>
+              <label className="text-sm font-medium text-gray-700">First Name</label>
               <input
                 type="text"
                 id="firstName"
@@ -39,9 +52,7 @@ export default function Register() {
               />
             </div>
             <div className="flex flex-col">
-              <label htmlFor="lastName" className="text-sm font-medium text-gray-700">
-                Last Name
-              </label>
+              <label className="text-sm font-medium text-gray-700">Last Name</label>
               <input
                 type="text"
                 id="lastName"
@@ -53,9 +64,7 @@ export default function Register() {
               />
             </div>
             <div className="flex flex-col">
-              <label htmlFor="studentId" className="text-sm font-medium text-gray-700">
-                Student ID
-              </label>
+              <label className="text-sm font-medium text-gray-700">Student ID</label>
               <input
                 type="text"
                 id="studentId"
@@ -67,9 +76,7 @@ export default function Register() {
               />
             </div>
             <div className="flex flex-col">
-              <label htmlFor="email" className="text-sm font-medium text-gray-700">
-                Email Address
-              </label>
+              <label className="text-sm font-medium text-gray-700">Email Address</label>
               <input
                 type="email"
                 id="email"
@@ -81,9 +88,7 @@ export default function Register() {
               />
             </div>
             <div className="flex flex-col">
-              <label htmlFor="password" className="text-sm font-medium text-gray-700">
-                Password
-              </label>
+              <label className="text-sm font-medium text-gray-700">Password</label>
               <input
                 type="password"
                 id="password"
@@ -95,9 +100,7 @@ export default function Register() {
               />
             </div>
             <div className="flex flex-col">
-              <label htmlFor="confirmPassword" className="text-sm font-medium text-gray-700">
-                Confirm Password
-              </label>
+              <label className="text-sm font-medium text-gray-700">Confirm Password</label>
               <input
                 type="password"
                 id="confirmPassword"
@@ -107,6 +110,11 @@ export default function Register() {
                 className="px-3 py-2 rounded-md border border-gray-300 focus:outline-none focus:ring-1 focus:ring-blue-500"
                 required
               />
+            </div>
+            <div className="flex flex-col">
+              <label htmlFor="cars">Choose a car:</label>
+
+              <Select value={animal} onChange={handleChangeValue} options={options} />
             </div>
           </div>
           <button

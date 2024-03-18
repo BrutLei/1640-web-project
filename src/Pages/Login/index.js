@@ -17,9 +17,7 @@ function Login() {
         <h1 className="text-2xl font-bold text-center mb-4">Welcome Back, Student</h1>
         <form className="space-y-4">
           <div className="flex flex-col">
-            <label htmlFor="username" className="text-sm font-medium text-gray-700">
-              Student Email
-            </label>
+            <label className="text-sm font-medium text-gray-700">Student Email</label>
             <input
               type="text"
               id="username"

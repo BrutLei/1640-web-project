@@ -24,15 +24,15 @@ function Table() {
             <th scope="col" className="px-6 py-3">
               Title
             </th>
-            <th scope="col" class="px-6 py-3">
-              <div class="flex items-center">URL</div>
+            <th scope="col" className="px-6 py-3">
+              <div className="flex items-center">URL</div>
             </th>
-            <th scope="col" class="px-6 py-3">
-              <div class="flex items-center">
+            <th scope="col" className="px-6 py-3">
+              <div className="flex items-center">
                 Submitted Date
                 <a href="#">
                   <svg
-                    class="w-3 h-3 ms-1.5"
+                    className="w-3 h-3 ms-1.5"
                     aria-hidden="true"
                     xmlns="http://www.w3.org/2000/svg"
                     fill="currentColor"
@@ -43,12 +43,12 @@ function Table() {
                 </a>
               </div>
             </th>
-            <th scope="col" class="px-6 py-3">
-              <div class="flex items-center">
+            <th scope="col" className="px-6 py-3">
+              <div className="flex items-center">
                 Status
                 <a href="#">
                   <svg
-                    class="w-3 h-3 ms-1.5"
+                    className="w-3 h-3 ms-1.5"
                     aria-hidden="true"
                     xmlns="http://www.w3.org/2000/svg"
                     fill="currentColor"
@@ -59,12 +59,12 @@ function Table() {
                 </a>
               </div>
             </th>
-            <th scope="col" class="px-6 py-3">
-              <div class="flex items-center">
+            <th scope="col" className="px-6 py-3">
+              <div className="flex items-center">
                 Year
                 <a href="#">
                   <svg
-                    class="w-3 h-3 ms-1.5"
+                    className="w-3 h-3 ms-1.5"
                     aria-hidden="true"
                     xmlns="http://www.w3.org/2000/svg"
                     fill="currentColor"
@@ -75,74 +75,74 @@ function Table() {
                 </a>
               </div>
             </th>
-            <th scope="col" class="px-6 py-3">
+            <th scope="col" className="px-6 py-3">
               Actions
             </th>
           </tr>
         </thead>
         <tbody>
-          <tr class="bg-white">
-            <th scope="row" class="px-6 py-4 font-medium text-black whitespace-nowrap ">
+          <tr className="bg-white">
+            <th scope="row" className="px-6 py-4 font-medium text-black whitespace-nowrap ">
               1
             </th>
-            <td class="px-6 py-4">abc dè gh jkl</td>
-            <td class="px-6 py-4">http://abc.com</td>
-            <td class="px-6 py-4">{new Date().toString()}</td>
-            <td class="px-6 py-4 ">
+            <td className="px-6 py-4">abc dè gh jkl</td>
+            <td className="px-6 py-4">http://abc.com</td>
+            <td className="px-6 py-4">{new Date().toString()}</td>
+            <td className="px-6 py-4 ">
               <p className="bg-blue-500 hover:bg-blue-700 text-white text-center font-bold py-2 px-4 rounded-full">
                 Reviewing
               </p>
             </td>
-            <td class="px-6 py-4">2022</td>
-            <td class="px-6 py-4">
-              <a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline m-1">
+            <td className="px-6 py-4">2022</td>
+            <td className="px-6 py-4">
+              <a href="#" className="font-medium text-blue-600 dark:text-blue-500 hover:underline m-1">
                 Edit
               </a>
-              <a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline m-1">
+              <a href="#" className="font-medium text-blue-600 dark:text-blue-500 hover:underline m-1">
                 Delete
               </a>
             </td>
           </tr>
-          <tr class="bg-white">
-            <th scope="row" class="px-6 py-4 font-medium text-black whitespace-nowrap ">
+          <tr className="bg-white">
+            <th scope="row" className="px-6 py-4 font-medium text-black whitespace-nowrap ">
               1
             </th>
-            <td class="px-6 py-4">abc dè gh jkl</td>
-            <td class="px-6 py-4">http://abc.com</td>
-            <td class="px-6 py-4">{new Date().toString()}</td>
-            <td class="px-6 py-4 ">
+            <td className="px-6 py-4">abc dè gh jkl</td>
+            <td className="px-6 py-4">http://abc.com</td>
+            <td className="px-6 py-4">{new Date().toString()}</td>
+            <td className="px-6 py-4 ">
               <p className="bg-red-600 hover:bg-red-700 text-white text-center font-bold py-2 px-4 rounded-full">
                 Reject
               </p>
             </td>
-            <td class="px-6 py-4">2022</td>
-            <td class="px-6 py-4">
-              <a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline m-1">
+            <td className="px-6 py-4">2022</td>
+            <td className="px-6 py-4">
+              <a href="#" className="font-medium text-blue-600 dark:text-blue-500 hover:underline m-1">
                 Edit
               </a>
-              <a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline m-1">
+              <a href="#" className="font-medium text-blue-600 dark:text-blue-500 hover:underline m-1">
                 Delete
               </a>
             </td>
           </tr>
-          <tr class="bg-white">
-            <th scope="row" class="px-6 py-4 font-medium text-black whitespace-nowrap ">
+          <tr className="bg-white">
+            <th scope="row" className="px-6 py-4 font-medium text-black whitespace-nowrap ">
               1
             </th>
-            <td class="px-6 py-4">abc dè gh jkl</td>
-            <td class="px-6 py-4">http://abc.com</td>
-            <td class="px-6 py-4">{new Date().toString()}</td>
-            <td class="px-6 py-4 ">
+            <td className="px-6 py-4">abc dè gh jkl</td>
+            <td className="px-6 py-4">http://abc.com</td>
+            <td className="px-6 py-4">{new Date().toString()}</td>
+            <td className="px-6 py-4 ">
               <p className="bg-green-500 hover:bg-green-700 text-white text-center font-bold py-2 px-4 rounded-full">
                 Approved
               </p>
             </td>
-            <td class="px-6 py-4">2022</td>
-            <td class="px-6 py-4">
-              <a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline m-1">
+            <td className="px-6 py-4">2022</td>
+            <td className="px-6 py-4">
+              <a href="#" className="font-medium text-blue-600 dark:text-blue-500 hover:underline m-1">
                 Edit
               </a>
-              <a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline m-1">
+              <a href="#" className="font-medium text-blue-600 dark:text-blue-500 hover:underline m-1">
                 Delete
               </a>
             </td>
