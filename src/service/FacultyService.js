@@ -1,6 +1,6 @@
 import axios from './CustomAxios';
 
-const fetchAllFaculties = () => {
+const fetchAllFaculties = async () => {
   return axios.get('/faculties');
 };
 

@@ -8,7 +8,7 @@ function Table() {
 
   const getDatas = () => {
     let res = null;
-    console.log(res);
+    // console.log(res);
     setList([]);
     return;
   };

@@ -1,21 +1,81 @@
-import { useState } from 'react';
-import { toast } from 'react-toastify';
+import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { toast, Bounce, Zoom } from 'react-toastify';
+
+// service
+import { Login as loginHandler } from '~/service/UserService';
+
+let response = undefined;
+
 function Login() {
+  // Check if user logged in to the website
+  useEffect(() => {
+    let session = sessionStorage.getItem('account');
+    if (session) {
+      navigate('/');
+    }
+  }, []);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const onLogin = (event) => {
+  const navigate = useNavigate();
+
+  const onLogin = async (event) => {
     event.preventDefault();
     if (!email || !password) {
       toast.warn('Email/password is requires!!!');
       return;
     }
+    response = await loginHandler({ email, password });
+    // console.log(response);
+    //Login succeed and user have faculty
+    if (response && response.MS === 'Login successful' && response.EC === '0') {
+      let accountData = {
+        isAuthenticated: true,
+        token: 'fake',
+      };
+      sessionStorage.setItem('account', JSON.stringify(accountData));
+
+      // save user data to session
+      sessionStorage.setItem('userData', JSON.stringify(response.DT));
+      navigate('/');
+    }
+    //Login success and user have no faculty
+    if (response && response.MS === 'Login successful' && response.EC !== '0') {
+      toast.warn('User do not belong to any faculty', {
+        position: 'top-right',
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: 'colored',
+        transition: Zoom,
+      });
+    }
+    // Login failed
+    if (response && response.MS !== 'Login successful' && response.EC !== '0') {
+      toast.error(`Login failed ${response.MS}`, {
+        position: 'top-right',
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: 'light',
+        transition: Bounce,
+      });
+    }
   };
   return (
     <div className="flex items-center justify-center h-screen bg-gray-100">
-      <div className="w-full px-8 py-4 sm:px-4 bg-white rounded-lg shadow-md sm:w-80 sm:h-3/4 sm:m-5 sm:flex sm:flex-col sm:justify-center sm:items-center">
-        <h1 className="text-2xl font-bold text-center mb-4">Welcome Back, Student</h1>
-        <form className="space-y-4">
+      <div className="w-full px-8 py-4 sm:px-4 bg-white rounded-lg shadow-md md:w-4/6 sm:w-80 sm:h-3/4 sm:m-5 sm:flex sm:flex-col sm:justify-center sm:items-center">
+        <h1 className="text-2xl font-bold text-center mb-4 block w-full md:uppercase md:text-start">
+          Welcome Back, Student
+        </h1>
+        <form className="space-y-4 md:w-full">
           <div className="flex flex-col">
             <label className="text-sm font-medium text-gray-700">Student Email</label>
             <input

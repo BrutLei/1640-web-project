@@ -1,13 +1,14 @@
-import { useCallback, useState } from 'react';
+import { useEffect, useState } from 'react';
 import images from '~/assets/images';
 
-function Header() {
+function Header({ studentInfo }) {
   const [showMenu, setShowMenu] = useState(false);
   const handleShowMenu = (state) => {
     if (state == true) {
       setShowMenu(!state);
     }
   };
+
   return (
     <div onClick={() => handleShowMenu(showMenu)}>
       <nav className="m-2">

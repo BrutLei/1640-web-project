@@ -1,20 +1,18 @@
-import { useState } from 'react';
-import Select from 'react-tailwindcss-select';
+import { useEffect, useState } from 'react';
+import { toast, Slide, Zoom, Flip, Bounce } from 'react-toastify';
 
-const options = [
-  { value: 'fox', label: '🦊 Fox' },
-  { value: 'Butterfly', label: '🦋 Butterfly' },
-  { value: 'Honeybee', label: '🐝 Honeybee' },
-];
+// services
+import { fetchAllFaculties } from '~/service/FacultyService';
+import { registerNewUser } from '~/service/UserService';
 
 export default function Register() {
   const [formData, setFormData] = useState({
     firstName: '',
     lastName: '',
-    studentId: '',
     email: '',
     password: '',
     confirmPassword: '',
+    faculty: '',
   });
 
   const handleChange = (event) => {
@@ -24,19 +22,40 @@ export default function Register() {
   const handleSubmit = (event) => {
     event.preventDefault();
     // Implement form submission logic and user registration here
-    console.log('Form submitted:', formData); // Example logging
+    // console.log('Form submitted:', formData);
+    // Example logging
+    let response = registerNewUser(formData);
+    if (response) {
+      toast.success('🦄 Create new user succeed!', {
+        position: 'top-right',
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: 'colored',
+        transition: Zoom,
+      });
+      setFormData({ firstName: '', lastName: '', email: '', password: '', confirmPassword: '', faculty: '' });
+    }
+  };
+  const [options, setOptions] = useState([]);
+  useEffect(() => {
+    getOptions();
+  }, []);
+
+  const getOptions = async () => {
+    let res = await fetchAllFaculties();
+    if (res) {
+      setOptions(res);
+    }
   };
 
-  const [animal, setAnimal] = useState(null);
-
-  const handleChangeValue = (value) => {
-    console.log('value:', value);
-    setAnimal(value);
-  };
   return (
     <div className="flex items-center justify-center min-h-screen bg-gray-100">
-      <div className="w-full max-w-md px-8 py-4 bg-white rounded-lg shadow-md">
-        <h1 className="text-2xl font-bold text-center mb-4">Student Registration</h1>
+      <div className="w-full max-w-lg px-8 py-4 bg-white rounded-lg shadow-md">
+        <h1 className="text-2xl font-bold text-center mb-4 uppercase">Student Registration</h1>
         <form className="space-y-4" onSubmit={handleSubmit}>
           <div className="grid grid-cols-1 gap-4">
             <div className="flex flex-col">
@@ -58,18 +77,6 @@ export default function Register() {
                 id="lastName"
                 name="lastName"
                 value={formData.lastName}
-                onChange={handleChange}
-                className="px-3 py-2 rounded-md border border-gray-300 focus:outline-none focus:ring-1 focus:ring-blue-500"
-                required
-              />
-            </div>
-            <div className="flex flex-col">
-              <label className="text-sm font-medium text-gray-700">Student ID</label>
-              <input
-                type="text"
-                id="studentId"
-                name="studentId"
-                value={formData.studentId}
                 onChange={handleChange}
                 className="px-3 py-2 rounded-md border border-gray-300 focus:outline-none focus:ring-1 focus:ring-blue-500"
                 required
@@ -112,9 +119,28 @@ export default function Register() {
               />
             </div>
             <div className="flex flex-col">
-              <label htmlFor="cars">Choose a car:</label>
-
-              <Select value={animal} onChange={handleChangeValue} options={options} />
+              <label htmlFor="cars" className="block mb-2 text-sm font-medium text-gray-900">
+                Choose a faculty:
+              </label>
+              <select
+                id="countries"
+                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                onChange={handleChange}
+                name="faculty"
+                value={formData.faculty}
+                required
+              >
+                <option value="">Choose a faculty</option>
+                {options.length > 0
+                  ? options.map((item, index) => {
+                      return (
+                        <option key={index} value={item.id}>
+                          {item.name}
+                        </option>
+                      );
+                    })
+                  : ''}
+              </select>
             </div>
           </div>
           <button
