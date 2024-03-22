@@ -1,11 +1,12 @@
 import { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { json, useNavigate } from 'react-router-dom';
 import { toast, Bounce, Zoom } from 'react-toastify';
-
+import { login } from '~/redux/reducers/UserSlice';
 // service
 import { Login as loginHandler } from '~/service/UserService';
 
-let response = undefined;
+let response = [];
 
 function Login() {
   // Check if user logged in to the website
@@ -15,10 +16,12 @@ function Login() {
       navigate('/');
     }
   }, []);
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
 
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
 
   const onLogin = async (event) => {
     event.preventDefault();
@@ -35,6 +38,8 @@ function Login() {
         token: 'fake',
       };
       sessionStorage.setItem('account', JSON.stringify(accountData));
+      sessionStorage.setItem('user', JSON.stringify(response));
+      dispatch(login({ response }));
 
       // save user data to session
       sessionStorage.setItem('userData', JSON.stringify(response.DT));

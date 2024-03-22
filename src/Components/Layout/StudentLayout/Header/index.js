@@ -1,21 +1,44 @@
 import { useEffect, useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import images from '~/assets/images';
 
 function Header({ studentInfo }) {
   const [showMenu, setShowMenu] = useState(false);
+  const [user, setUser] = useState({
+    faculty: { name: '' },
+    user: {
+      name: '',
+      email: '',
+    },
+  });
+  const navigate = useNavigate();
+
   const handleShowMenu = (state) => {
     if (state == true) {
       setShowMenu(!state);
     }
   };
+  const handleLogout = () => {
+    sessionStorage.removeItem('userData');
+    sessionStorage.removeItem('account');
+    navigate('/login');
+  };
+
+  useEffect(() => {
+    const session = sessionStorage.getItem('userData');
+    if (session) {
+      setUser(JSON.parse(session));
+    }
+  }, []);
 
   return (
     <div onClick={() => handleShowMenu(showMenu)}>
       <nav className="m-2">
-        <div className="justify-between max-w-screen-xl flex flex-wrap items-center mx-auto p-4">
+        <div className="justify-between max-w-screen flex flex-wrap items-center mx-auto p-4">
           <a className="flex flex-row">
             <img src={images.commonLogo} className="h-10 mr-2" />
-            <span className="self-center text-xl font-semibold whitespace-nowrap">Information Technology</span>
+            <span className="self-center text-xl font-semibold whitespace-nowrap capitalize">{user.faculty.name}</span>
           </a>
           <div style={{ position: 'relative' }} className="flex">
             <button
@@ -33,7 +56,7 @@ function Header({ studentInfo }) {
               <span className="sr-only">Open user menu</span>
             </button>
             <span className="ml-10 self-center border-solid border border-gray-400 rounded-xl text-black bg-slate-50 p-2 visible sm:invisible md:visible lg:visible">
-              Michael .Jr
+              {user.user.name}
             </span>
             <div
               style={{ position: 'absolute', top: '35px' }}
@@ -43,8 +66,8 @@ function Header({ studentInfo }) {
               id="user-dropdown"
             >
               <div className="px-4 py-3">
-                <span className="block text-sm text-gray-900 dark:text-white">Bonnie Green</span>
-                <span className="block text-sm  text-gray-500 truncate dark:text-gray-400">name@flowbite.com</span>
+                <span className="block text-sm text-gray-900 dark:text-white">{user.user.name}</span>
+                <span className="block text-sm  text-gray-500 truncate dark:text-gray-400">{user.user.email}</span>
               </div>
               <ul className="py-2" aria-labelledby="user-menu-button">
                 <li>
@@ -66,14 +89,7 @@ function Header({ studentInfo }) {
                 <li>
                   <a
                     href="#"
-                    className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
-                  >
-                    Earnings
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="#"
+                    onClick={handleLogout}
                     className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
                   >
                     Sign out
